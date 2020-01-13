@@ -1,0 +1,243 @@
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.util.Scanner;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+/**
+ *   n
+ */
+public class main
+{
+    private static DecimalFormat df = new DecimalFormat("0.00");
+    public static void main()
+    {
+        // varibles for all of project
+        int period = 1;
+        double number = 0;
+
+        int period2 = 1;
+        double number2 = 0;
+
+        double number3 = 0;
+        double saver = 0;
+        double A;
+        double B;
+        double C;
+        double D;
+        double F;
+        
+        int i;
+        
+        // spells a word in Asscii art
+        int width2 = 100;
+        int height2 = 300;
+
+        BufferedImage image = new BufferedImage(width2, height2, BufferedImage.TYPE_INT_RGB);
+        Graphics g = image.getGraphics();
+        g.setFont(new Font("SansSerif", Font.BOLD, 24));
+
+        Graphics2D graphics = (Graphics2D) g;
+        graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
+            RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        graphics.drawString("GPA", 10, 20);
+
+        for (int y = 0; y < height2; y++) {
+            StringBuilder sb = new StringBuilder();
+            for (int x = 0; x < width2; x++) {
+
+                sb.append(image.getRGB(x, y) == -16777216 ? " " : "$");
+
+            }
+
+            if (sb.toString().trim().isEmpty()) {
+                continue;
+            }
+
+            System.out.println(sb); 
+        }
+
+        // start of for loop
+        // runs seven times
+        for (i = 0; i < 7; i++)
+        {
+            System.out.println("Please enter answers as: Yes/No(Capital Grade letter)");
+            System.out.println("Example 1: Yes(A)");
+            System.out.println("Example 2: No(C)");
+            System.out.println("Capitals matter threwout whole program");
+            System.out.println();
+            System.out.println("Is class " + period +  " weighted? Yes or No? " + "What grade do you have in this class");
+
+            period = period + 1;
+            String grade = UserInput.getString();
+            System.out.println();// weighted or unweighted
+            if(grade.indexOf("Yes") > -1)
+            {
+                A = 5.00; B = 4.00; C = 3.00; D = 1.00; F = 0.00;
+            }
+            else
+            {
+                A = 4.00; B = 3.00; C = 2.00; D = 1.00; F = 0.00;
+            }
+            // runs threw and adds grades to a total
+            if(grade.indexOf("A") > - 1)
+            {
+                number = number + A;
+
+            }
+            else if(grade.indexOf("B") > -1)
+            {
+                number = number + B;
+
+            }
+            else if(grade.indexOf("C") > -1)
+            {
+                number = number + C;
+
+            }
+            else if(grade.indexOf("D") > -1)
+            {
+                number = number + D;
+
+            }
+            else if(grade.indexOf("F") > -1)
+            {
+                number = number + F;
+
+            }
+
+        }
+        saver = number;
+        number = number / 7;
+        // saver saves gpa for calculating sem 2
+        
+
+        System.out.println("Your GPA is: " + df.format(number));// rounds gpa
+        System.out.println(saver);
+        // will provide info based on gpa
+
+        System.out.println();
+        System.out.println("Would you like calculate total gpa for the whole year?");
+        System.out.println("Yes or No?");
+        String sem = UserInput.getString();
+        System.out.println();
+        // if wants whoel year will refun gpa calculator
+        if(sem.indexOf("No") > -1)
+        {
+            System.exit(0);
+        }
+        else if(sem.indexOf("Yes") > -1)
+        {
+            for (i = 0; i < 7; i++)
+            {
+                System.out.println("Please enter answers as you did for semester 1");
+
+                System.out.println();
+                System.out.println("Is class " + period2 +  " weighted? Yes or No? " + "What grade do you have in this class");
+
+                period2 = period2 + 1;
+                String grade = UserInput.getString();
+                System.out.println();// weighted or unweighted
+                if(grade.indexOf("Yes") > -1)
+                {
+                    A = 5.00; B = 4.00; C = 3.00; D = 1.00; F = 0.00;
+                }
+                else
+                {
+                    A = 4.00; B = 3.00; C = 2.00; D = 1.00; F = 0.00;
+                }
+                // runs threw and adds grades to a total
+                if(grade.indexOf("A") > - 1)
+                {
+                    number2 = number2 + A;
+
+                }
+                else if(grade.indexOf("B") > -1)
+                {
+                    number2 = number2 + B;
+
+                }
+                else if(grade.indexOf("C") > -1)
+                {
+                    number2 = number2 + C;
+
+                }
+                else if(grade.indexOf("D") > -1)
+                {
+                    number2 = number2 + D;
+
+                }
+                else if(grade.indexOf("F") > -1)
+                {
+                    number2 = number2 + F;
+
+                }
+
+            }
+            number3 = saver + number2;
+            
+            number3 = number3 / 14;
+            System.out.println("Your GPA for the year is: " + df.format(number3));// rounds gpa
+
+        } 
+        
+        System.out.println("Would you like to know some collage information");
+        System.out.println("Reply with Yes or No");
+        System.out.println();
+        String yesNo = UserInput.getString();
+
+        if(yesNo.indexOf("No") > 2)
+        {
+            System.exit(0); // ends the running program
+        }
+        else if(yesNo.indexOf("Yes") > -1)
+        {
+            if(number >= 4.0)
+            {
+                System.out.println("You have a great GPA and can get into many pertegous collages");
+                System.out.println("(Without considering SAT and other test scores)");
+            }
+            else if(number < 4.00 && number >= 3.00)
+            {
+                System.out.println("You have an ok GPA and can get into many good collages");
+                System.out.println("(Without considering SAT and other test scores)");
+                System.out.println("You should try harder");
+            }
+            else if(number < 3.00 && number >= 2.00)
+            {
+                System.out.println("You have a bad GPA and can get into some ok collages");
+                System.out.println("(Without considering SAT and other test scores)");
+                System.out.println("You need try harder and not be dumb");
+            }
+            else if(number < 2.00 && number >= 1.00)
+            {
+                System.out.println("You have an bad GPA and can maybe get into a good collages");
+                System.out.println("(Without considering SAT and other test scores)");
+                System.out.println("You need to stop slacking in school and DO BETTER");
+            }
+            else if(number < 1.00 && number >= 0.00)
+            {
+                System.out.println("You have a horrible GPA maybe collage is not met for you");
+                System.out.println("(Without considering SAT and other test scores)");
+                System.out.println("You'll most likely end up working at Mac Donalds");
+            }
+        }
+        
+        
+        /**
+        System.out.println("Would you like to rate our services?");
+        String rating = UserInput.getString();
+        
+        if(rating.indexOf("No") > -1)
+        {
+            System.exit(0);
+        }
+        else if(rating.indexOf("Yes") > -2)
+        {
+            System.out.println("What would you rate of servace out of 10?");
+            String userRating = UserInput.getString();
+        }
+        */
+    }
+}
