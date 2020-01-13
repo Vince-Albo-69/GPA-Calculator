@@ -114,22 +114,21 @@ public class main
         
 
         System.out.println("Your GPA is: " + df.format(number));// rounds gpa
-        System.out.println(saver);
-        // will provide info based on gpa
-
+        
+      
         System.out.println();
         System.out.println("Would you like calculate total gpa for the whole year?");
         System.out.println("Yes or No?");
         String sem = UserInput.getString();
         System.out.println();
-        // if wants whoel year will refun gpa calculator
+        // if wants whole year will refun gpa calculator
         if(sem.indexOf("No") > -1)
         {
             System.exit(0);
         }
         else if(sem.indexOf("Yes") > -1)
         {
-            for (i = 0; i < 7; i++)
+            for (i = 0; i < 7; i++) // for loop for getting grades for 7 classes
             {
                 System.out.println("Please enter answers as you did for semester 1");
 
@@ -141,11 +140,11 @@ public class main
                 System.out.println();// weighted or unweighted
                 if(grade.indexOf("Yes") > -1)
                 {
-                    A = 5.00; B = 4.00; C = 3.00; D = 1.00; F = 0.00;
+                    A = 5.00; B = 4.00; C = 3.00; D = 1.00; F = 0.00; // sets weighted grades
                 }
                 else
                 {
-                    A = 4.00; B = 3.00; C = 2.00; D = 1.00; F = 0.00;
+                    A = 4.00; B = 3.00; C = 2.00; D = 1.00; F = 0.00; // sets unweighted grades
                 }
                 // runs threw and adds grades to a total
                 if(grade.indexOf("A") > - 1)
@@ -191,7 +190,7 @@ public class main
         {
             System.exit(0); // ends the running program
         }
-        else if(yesNo.indexOf("Yes") > -1)
+        else if(yesNo.indexOf("Yes") > -1) // will provide more information
         {
             if(number >= 4.0)
             {
